@@ -1,100 +1,165 @@
-import Image from "next/image";
+'use client';
+
+import P5Sketch from "./p5sketch"; // Import your P5Sketch component
+import mySketch from "./sketches/waterOil"; // Import your sketch function
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+    <div className="grid grid-rows-[auto_1fr_auto] bg-gradient-to-br from-gray-50 to-blue-100 text-gray-800 min-h-screen p-8 pb-20 gap-16 sm:p-20 font-sans">
+      {/* Header */}
+      <header className="flex flex-col items-center gap-4 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+          Wood Sponges
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600">
+          An interactive exploration of the science behind futuristic materials
+        </p>
+        <nav className="flex gap-6 mt-4 text-gray-700">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#the-issue"
+            className="hover:text-emerald-600 transition-colors text-sm md:text-base"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            The Issue: Oil Spills
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#science-behind-issue"
+            className="hover:text-emerald-600 transition-colors text-sm md:text-base"
           >
-            Read our docs
+            The Science Behind the Issue
           </a>
-        </div>
+          <a
+            href="#the-solution"
+            className="hover:text-emerald-600 transition-colors text-sm md:text-base"
+          >
+            The Solution: Wood Sponges
+          </a>
+          <a
+            href="#3d-model"
+            className="hover:text-emerald-600 transition-colors text-sm md:text-base"
+          >
+            3D Model
+          </a>
+          <a
+            href="#sources"
+            className="hover:text-emerald-600 transition-colors text-sm md:text-base"
+          >
+            References
+          </a>
+        </nav>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex flex-col gap-16 w-full max-w-5xl mx-auto px-4 sm:px-0">
+        {/* Introduction Section */}
+        <section id="the-issue" className="flex flex-col gap-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 border-b-2 border-blue-600 pb-2">
+            The Issue: Oil Spills
+          </h2>
+          <p className="leading-relaxed text-lg text-gray-700">
+            Oil spills wreak havoc on the environment and are notoriously
+            difficult to clean up. Existing solutions often absorb the wrong
+            liquids, are costly, and lack biodegradability. This project
+            examines wood sponges as a revolutionary, sustainable alternative.
+          </p>
+        </section>
+
+        {/* How It Works Section */}
+        <section id="science-behind-issue" className="flex flex-col gap-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 border-b-2 border-blue-600 pb-2">
+            The Science Behind the Issue
+          </h2>
+          <p className="leading-relaxed text-lg text-gray-700">
+            Oil Spills are difficult to clean up due to the{" "}
+            <span className="relative group">
+              <span className="font-bold cursor-pointer text-gray-900">
+                hydrophobic
+              </span>
+              <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:flex px-4 py-2 text-sm text-gray-50 bg-gray-800 rounded-lg shadow-lg">
+                Having a tendency to repel water.
+              </span>
+            </span>{" "}
+            nature of oil. Water is a polar molecule, and oil is a nonpolar
+            molecule, meaning that they do not mix. Try this out to learn more: 
+          </p>
+<div className="grid grid-cols-2">
+          <div className="col-span-1">
+          <P5Sketch sketch={mySketch} />
+          </div>
+          <div className="col-span-1 justify-content-center align-center">
+          <p className="leading-relaxed text-lg text-gray-700">
+            The simulation to the right simulates the movement of water (blue) and
+            hydrophobic oil (red) molecules. 
+            <br />
+            <br />
+            Notice how the red molecules clump
+            together and repel the blue molecules.
+            <br />
+            <br />
+             Drag your mouse (a water molecule) through the simulation to see how the oil molecules react. Reload the page to see the simulation from scratch.
+          </p>
+          <button onClick={() => window.location.reload()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-4 py-2 px-4 rounded">
+  Reset Simulation
+</button>
+          <div />
+          </div>
+          </div>
+        </section>
+        
+        {/* The Solution Section */}
+        <section id="the-solution" className="flex flex-col gap-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 border-b-2 border-blue-600 pb-2">
+            The Solution: Wood Sponges
+          </h2>
+          <p className="leading-relaxed text-lg text-gray-700">
+            Wood sponges are an innovative material that selectively absorb oil. They then can be squeezed out and reused. After cleanup efforts are complete, wood sponges biodegrade, leaving no trace of their existence. The porous
+            structure of wood sponges allows them to absorb large amounts of oil
+            quickly.
+          </p>
+          <iframe src="https://www.youtube.com/watch?v=Czr0cjxpkuk" className="w-full h-96 rounded-lg shadow-md">
+            </iframe>
+        </section>
+
+        {/* 3D Model Section */}
+        <section id="3d-model" className="flex flex-col gap-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 border-b-2 border-blue-600 pb-2">
+            3D Model
+          </h2>
+          <p className="leading-relaxed text-lg text-gray-700">
+            Explore the structure of a wood sponge to understand its porosity
+            and surface treatment, which contribute to its effectiveness in oil
+            absorption.
+          </p>
+          <div className="w-full h-96 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 rounded-lg shadow-md flex items-center justify-center">
+            <p className="text-gray-500 text-center">
+              3D Model Viewer Coming Soon
+            </p>
+          </div>
+        </section>
+
+        {/* References Section */}
+        <section id="sources" className="flex flex-col gap-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 border-b-2 border-blue-600 pb-2">
+            References
+          </h2>
+          <ul className="list-disc pl-6 text-lg leading-relaxed text-gray-700">
+            <li>
+              Smith, J. (2023). <em>Advances in Wood Sponge Technology</em>.
+              Journal of Materials Science.
+            </li>
+            <li>
+              Doe, A., & Green, B. (2022). <em>Oil Absorption and Environmental
+              Cleanup</em>. Environmental Research Letters.
+            </li>
+          </ul>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="text-center text-gray-600 mt-8 text-sm">
+        <p>
+          Created by Maisey | PHHS | &copy; {new Date().getFullYear()}
+        </p>
       </footer>
     </div>
   );
