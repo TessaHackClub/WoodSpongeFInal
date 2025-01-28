@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import p5 from "p5"; // Import p5 as the actual instance
 
+
 type P5SketchProps = {
   sketch: (p: p5) => void; // Now it expects an instance of p5
 };

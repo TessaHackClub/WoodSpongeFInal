@@ -1,7 +1,8 @@
 'use client';
 
-import P5Sketch from "./p5sketch"; // Import your P5Sketch component
-import mySketch from "./sketches/waterOil"; // Import your sketch function
+import P5SketchWrapper from "./p5SketchWrapper";
+import dynamic from 'next/dynamic';
+const P5Wrapper = dynamic(() => import('./p5SketchWrapper'), { ssr: false });
 
 export default function Home() {
   return (
@@ -84,7 +85,7 @@ export default function Home() {
           </p>
 <div className="grid grid-cols-2">
           <div className="col-span-1">
-          <P5Sketch sketch={mySketch} />
+          <P5SketchWrapper/>
           </div>
           <div className="col-span-1 justify-content-center align-center">
           <p className="leading-relaxed text-lg text-gray-700">
