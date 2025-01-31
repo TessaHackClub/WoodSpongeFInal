@@ -1,23 +1,23 @@
 import React, { useRef, useEffect } from "react";
-import p5 from "p5"; // Import p5 as the actual instance
 
-
-type P5SketchProps = {
-  sketch: (p: p5) => void; // Now it expects an instance of p5
-};
-
-const P5Sketch: React.FC<P5SketchProps> = ({ sketch }) => {
+const P5Sketch: React.FC<{ sketch: any }> = ({ sketch }) => {
   const sketchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (sketchRef.current) {
-      const p5Instance = new p5(sketch, sketchRef.current);
+    let p5Instance: any;
 
-      // Cleanup when the component unmounts
-      return () => {
-        p5Instance.remove();
-      };
+    // Ensure the code runs only in the client (browser)
+    if (typeof window !== "undefined") {
+      import("p5").then((p5) => {
+        p5Instance = new p5.default(sketch, sketchRef.current!);
+      });
     }
+
+    return () => {
+      if (p5Instance) {
+        p5Instance.remove(); // Clean up p5 instance on unmount
+      }
+    };
   }, [sketch]);
 
   return <div ref={sketchRef} />;
