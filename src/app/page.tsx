@@ -275,7 +275,7 @@ This creates a hydrophobic coating on the sponge.
       {/* Footer */}
       <footer className="text-center text-gray-600 mt-8 text-sm">
         <p>
-          Created by Maisey | PHHS | &copy; {new Date().getFullYear()}
+          Created by Maisey | &copy; {new Date().getFullYear()}
         </p>
       </footer>
     </div>
